@@ -4,30 +4,31 @@ import json
 import os
 
 app = Flask(__name__)
-app.secret_key = "mysamlapp-secret"
+app.secret_key = os.environ.get("FLASK_SECRET", "mysamlapp-secret")
 
 
 def prepare_flask_request(request):
     return {
-        'https': 'off',
-        'http_host': request.host,
-        'server_port': request.environ.get('SERVER_PORT'),
-        'script_name': request.path,
-        'get_data': request.args.copy(),
-        'post_data': request.form.copy()
+        "https": "on" if request.scheme == "https" else "off",
+        "http_host": request.host,
+        "server_port": request.environ.get("SERVER_PORT"),
+        "script_name": request.path,
+        "get_data": request.args.copy(),
+        "post_data": request.form.copy(),
     }
 
 
 def init_saml_auth(req):
     return OneLogin_Saml2_Auth(
         req,
-        custom_base_path=os.path.join(os.getcwd(), 'saml')
+        custom_base_path=os.path.join(os.getcwd(), "saml")
     )
 
 
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return render_template("index.html")
+
 
 @app.route("/login")
 def login():
@@ -36,7 +37,7 @@ def login():
     return redirect(auth.login())
 
 
-@app.route("/acs", methods=['POST'])
+@app.route("/acs", methods=["POST"])
 def acs():
     req = prepare_flask_request(request)
     auth = init_saml_auth(req)
@@ -61,7 +62,7 @@ def dashboard():
     return render_template(
         "results.html",
         nameid=session.get("user"),
-        attributes=json.dumps(session.get("attributes"), indent=4)
+        attributes=json.dumps(session.get("attributes"), indent=4),
     )
 
 
@@ -71,10 +72,11 @@ def logout():
 
     return redirect(
         "https://dev-aaf.au.auth0.com/v2/logout"
-        "?returnTo=http://localhost:5000/"
+        "?returnTo=https://YOUR-RENDER-APP.onrender.com/"
         "&client_id=V6qu7woaCvbywuGVuIS5JXHQRFVBX0nz"
     )
 
 
 if __name__ == "__main__":
-    app.run(host="localhost", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Render provides PORT
+    app.run(host="0.0.0.0", port=port, debug=False)
