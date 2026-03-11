@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SAML Assertion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="heading-container">
+        <h1 class="heading-text">SAML Assertion</h1>
+    </div>
+
+    <div class="result-text">
+        <h3>NameID</h3>
+        <p>{{ nameid }}</p>
+    </div>
+
+    <div class="result-text">
+
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>SAML Attributes</h3>
+
+            <button class="login-btn" onclick="copyMetadata()">
+                Copy to Clipboard
+            </button>
+        </div>
+
+        <pre id="metadata-box">{{ attributes }}</pre>
+
+    </div>
+
+    <a href="/logout" class="logout-btn">
+        Logout
+    </a>
+
+</div>
+
+
+<script>
+
+function copyMetadata() {
+
+    const text = document.getElementById("metadata-box").innerText;
+
+    navigator.clipboard.writeText(text).then(function () {
+
+        const btn = document.querySelector("button");
+
+        const original = btn.innerText;
+        btn.innerText = "Copied ✓";
+
+        setTimeout(() => {
+            btn.innerText = original;
+        }, 2000);
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

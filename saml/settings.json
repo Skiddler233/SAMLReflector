@@ -1,0 +1,21 @@
+{
+  "strict": false,
+  "debug": true,
+
+  "sp": {
+    "entityId": "http://localhost:5000/metadata",
+    "assertionConsumerService": {
+      "url": "http://localhost:5000/acs",
+      "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST"
+    }
+  },
+
+  "idp": {
+    "entityId": "urn:dev-aaf.au.auth0.com",
+    "singleSignOnService": {
+      "url": "https://dev-aaf.au.auth0.com/samlp/V6qu7woaCvbywuGVuIS5JXHQRFVBX0nz",
+      "binding": "urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect"
+    },
+    "x509cert": "MIIDAzCCAeugAwIBAgIJfkO5HS2PRjHCMA0GCSqGSIb3DQEBCwUAMB8xHTAbBgNVBAMTFGRldi1hYWYuYXUuYXV0aDAuY29tMB4XDTI1MDgxNDIzMzcxOVoXDTM5MDQyMzIzMzcxOVowHzEdMBsGA1UEAxMUZGV2LWFhZi5hdS5hdXRoMC5jb20wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDFmOc/ILYnYY6herv9jiX7iFcNfk29J5AYOPXcrEA2LKvDSlNvmE5MSzEITZbgBc+6ma7Itl7hSYpp8XyuS1Z6pEbtocP3M7I3JFvk3pITzDp9aP7PIKCWJY+Xnrhov0wn1Qw7XLNxjGQQMDJLSQBw9UEHzeImeZdXxpCrjEHljj3M9AY7iHrwnCu3yxM0gtCvaJnUixVvoK9DJcH8j/L9tTrUHYG/Ib1rU/eQZUUkLit1y12ldCMiVj7x/cXpVfdQN6XpUfdVSYXg4v476XRIwDqPzmJk1kqurkTiXAmcBDywHM5Hd/zkYm1MfEHvwMaIGoWl4uOVv2njLytoetCPAgMBAAGjQjBAMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFLklodAjBCPNxgL5Fv67BcX6QpKFMA4GA1UdDwEB/wQEAwIChDANBgkqhkiG9w0BAQsFAAOCAQEAoPnezEpf1Gt7UbO4iv/QZo23PPUguY7PjVBTlTySfX95ZP6Ef922u50eYr1tkNt3ecDeeEvH4xL1Jczp+tQ9xHc+0G6OaIuAkzZthw0P9MOeJyVQoV8xC4HRlpyt3E3LKljk3uJkk7p9aQD2qm0hiQJe+VmUKwNlIIjnctVJnda+9TETLDqIUItJsgfHNN+Bvph5Kych7CPUhQYKu0YCanLu1gAZHQucyY+NGROVKCeD1p7aROJzAKVZxSciF6ViHaKKQPjmo9jr8aZs3A20qfSP5Ai42m0Cn3JCFU64MQvIPXFqIprWHD99+8MB2b+rs7TmVGB3rAFF4Frsa/ugDw=="
+  }
+}
