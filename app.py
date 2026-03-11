@@ -28,18 +28,6 @@ def init_saml_auth(req):
 @app.route("/")
 def index():
     return render_template('index.html')
-    # if "user" in session:
-    #     return f"""
-    #     <h2>Welcome to MySAMLapp</h2>
-    #     <p>Logged in as: {session['user']}</p>
-    #     <a href="/logout">Logout</a>
-    #     """
-    # else:
-    #     return """
-    #     <h2>Welcome to MySAMLapp</h2>
-    #     <a href="/login">Login via SAML</a>
-    #     """
-
 
 @app.route("/login")
 def login():
