@@ -21,7 +21,7 @@ def prepare_flask_request(request):
 def init_saml_auth(req):
     return OneLogin_Saml2_Auth(
         req,
-        custom_base_path=os.path.join(os.getcwd(), 'MySAMLapp/saml')
+        custom_base_path=os.path.join(os.getcwd(), 'saml')
     )
 
 
